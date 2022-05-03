@@ -2,12 +2,16 @@ import smtplib
 import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import os
+from dotenv import load_dotenv
 
-port = 465
-password = "77asBnXuJu0M0oI6JZqs"
+load_dotenv()
+
 smtp_server = "smtp.gmail.com"
-from_addr = "jhm.trading.updates@gmail.com"
-to_addr = "jamesonhmarshall@gmail.com"
+port = 465
+from_addr = os.environ.get("from_email")
+password = os.environ.get("from_email_pass")
+to_addr = os.environ.get("to_email")
 
 text = """There should be a table here..."""
 # html = """\

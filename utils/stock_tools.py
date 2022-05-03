@@ -12,9 +12,12 @@ import time
 import os
 import btalib
 import matplotlib.pyplot as plt
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # TDA client params
-API_KEY = "ZFRLGT5AILB4MJOOQYS7FLAXES0C7IYC"
+API_KEY = os.environ.get("tda_api_key")
 REDIRECT_URI = "https://localhost"
 TOKEN_PATH = "token.json"
 
