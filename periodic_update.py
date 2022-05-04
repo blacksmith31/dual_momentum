@@ -24,6 +24,7 @@ import datetime
 from tabulate import tabulate
 import utils.stock_tools as st
 import utils.email_tools as et
+import utils.gmail_tool as gt
 
 with open("config.json", 'r') as j:
     cfg = json.load(j)
@@ -47,9 +48,9 @@ symbols = st.read_stock_list(symbol_file)
 symbols = symbols[:symb_count]
 nominal_col_count = len(symbols)
 
-for symbol in symbols:
-    # print(f"symbol: {symbol}")
-    st.download_symbol_data_since(symbol, hist_start, save_path=hist_path)
+# for symbol in symbols:
+#     # print(f"symbol: {symbol}")
+#     st.download_symbol_data_since(symbol, hist_start, save_path=hist_path)
 
 st.apply_sroc_indicators(hist_path, ema, roc, symbols)
 
@@ -90,7 +91,7 @@ add_html = tabulate([add_symbs], tablefmt='html')
 
 html = "<h1>Current</h1>" + prev_html + "<br><h2>Drop</h2><br>" + drop_html + "<br><h2>Add</h2><br>" + add_html + "<br><h1>New</h1><br>" + curr_html
 subject = f"Dual Momentum Update - {today}"
-et.send_mail(subject, html)
+gt.send_mail(subject, html)
 
 with open("test_table.html", 'w') as h:
     h.write(html)
