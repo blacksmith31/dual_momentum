@@ -48,9 +48,9 @@ symbols = st.read_stock_list(symbol_file)
 symbols = symbols[:symb_count]
 nominal_col_count = len(symbols)
 
-# for symbol in symbols:
-#     # print(f"symbol: {symbol}")
-#     st.download_symbol_data_since(symbol, hist_start, save_path=hist_path)
+for symbol in symbols:
+    # print(f"symbol: {symbol}")
+    st.download_symbol_data_since(symbol, hist_start, save_path=hist_path)
 
 st.apply_sroc_indicators(hist_path, ema, roc, symbols)
 
