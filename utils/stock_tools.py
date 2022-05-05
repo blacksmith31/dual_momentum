@@ -167,9 +167,13 @@ def apply_sroc_indicators(path: str, ema_period: int, roc_lookback: int, include
             symb_hist = symb_hist.filter(items=["Open", "High", "Low", "Close", "Volume"])
  
             # generate and attach EMA indicator
-            ema = btalib.ema(symb_hist, period=ema_period)
-            ema_col = ema.df["ema"]
-            symb_hist = symb_hist.join(ema_col)
+            try:
+                ema = btalib.ema(symb_hist, period=ema_period)
+                ema_col = ema.df["ema"]
+                symb_hist = symb_hist.join(ema_col)
+            except:
+                print(f"EMA fail on symbol: {name}")
+                raise
             # Generate and attach SROC indicator, this is the ROC indicator applied to the EMA
             # Formula is = (ema[0] - ema[lookback]) / (ema[lookback]) * 100
             sroc = btalib.roc(symb_hist.ema, period=roc_lookback)
