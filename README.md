@@ -3,7 +3,7 @@
 ## Introduction
 
 * Name: Jameson
-* Activities: gardening, building
+* Activities: gardening, building, welding
 
 
 
