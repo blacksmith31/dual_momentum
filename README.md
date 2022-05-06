@@ -1,5 +1,10 @@
 # Dual Momentum
 
+## Introduction
+
+* Name: Jameson
+* Activities: gardening, building
+
 
 
 ## Getting started
