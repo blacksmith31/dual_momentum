@@ -1,0 +1,13 @@
+{
+    "symbol_file": "top_2300_symbols.csv",
+    "data_folder": "history/",
+    "ema": 13,
+    "roc": 90,
+    "cutoff": 10,
+    "top_n": 20,
+    "period_type": "month",
+    "period": 6,
+    "state": {
+        "count": 3
+    }
+}
