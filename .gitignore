@@ -5,6 +5,9 @@ credentials.json
 cronlog.txt
 TODO.txt
 symbol_lists/
+history/
+backtest_data/
+backtest_results/
 
 .vscode/*
 !.vscode/settings.json
