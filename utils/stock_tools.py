@@ -136,16 +136,23 @@ def download_symbol_data(symbol: str, path: str, period_type: str, timeperiod: i
 def download_symbol_data_since(symbol: str, recent_date, client: Client=client, save_path=None):
 
     resp = client.get_price_history_every_day(symbol, start_datetime=recent_date)
-
+    filepath = f"{save_path}{symbol}.csv"
     if resp.status_code == 200:
         history = resp.json()
         hist = pd.json_normalize(history["candles"])
-        hist.columns = ["Open", "High", "Low", "Close", "Volume", "Date"]
+        try:
+            hist.columns = ["Open", "High", "Low", "Close", "Volume", "Date"]
+        except ValueError as e:
+            print(f"Symbol {symbol} failed")
+            print(e)
+            print(history)
+            os.remove(filepath)
+            return
         hist["Date"] = pd.to_datetime(hist["Date"], unit='ms')
         hist.set_index("Date", inplace=True)
         hist.sort_values(by="Date", ascending=True, inplace=True)
         if save_path:
-            filepath = f"{save_path}{symbol}.csv"
+            
             hist.to_csv(path_or_buf=filepath)
         time.sleep(1)
         return hist
