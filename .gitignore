@@ -2,12 +2,14 @@ token.json
 gtoken.json
 credentials.json
 .env
+.vscode/
 cronlog.txt
 TODO.txt
 symbol_lists/
 history/
 backtest_data/
 backtest_results/
+periodic_data/
 ignore.gitlab-ci.yml
 gmail_quickstart.py
 stock_data_pipeline.ipynb
