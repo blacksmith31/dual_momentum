@@ -8,6 +8,10 @@ symbol_lists/
 history/
 backtest_data/
 backtest_results/
+ignore.gitlab-ci.yml
+gmail_quickstart.py
+stock_data_pipeline.ipynb
+test_table.html
 
 .vscode/*
 !.vscode/settings.json
