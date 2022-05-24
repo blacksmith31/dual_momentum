@@ -152,7 +152,6 @@ def download_symbol_data_since(symbol: str, recent_date, client: Client=client, 
         hist.set_index("Date", inplace=True)
         hist.sort_values(by="Date", ascending=True, inplace=True)
         if save_path:
-            
             hist.to_csv(path_or_buf=filepath)
         time.sleep(1)
         return hist
