@@ -77,7 +77,7 @@ ipython_config.py
 .env
 .venv
 env/
-venvs/
+*venv*/
 ENV/
 env.bak/
 venv.bak/
