@@ -18,8 +18,7 @@ send email?
 import json
 import datetime
 from tabulate import tabulate
-import utils.stock_tools as st
-import utils.email_tools as et
+from utils import stock_tools as st
 import utils.gmail_tool as gt
 
 with open("config.json", 'r') as j:
@@ -27,12 +26,12 @@ with open("config.json", 'r') as j:
 
 symbol_file = cfg["symbol_file"]
 hist_path = cfg["data_folder"]
-period_type = cfg["period_type"]
-period = cfg["period"]
-ema = cfg["ema"]
-roc = cfg["roc"]
-cutoff = cfg["cutoff"]
-top_n = cfg["top_n"]
+period_type = cfg["strategy"]["period_type"]
+period = cfg["strategy"]["period"]
+ema = cfg["strategy"]["ema"]
+roc = cfg["strategy"]["roc"]
+cutoff = cfg["strategy"]["cutoff"]
+top_n = cfg["strategy"]["top_n"]
 count = cfg["state"]["count"]
 
 symb_count = count * 100

@@ -11,7 +11,6 @@ from tda.client import Client
 import time
 import os
 import btalib
-import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 
 load_dotenv()
