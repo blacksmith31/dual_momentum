@@ -21,7 +21,7 @@ from tabulate import tabulate
 from utils import stock_tools as st
 import utils.gmail_tool as gt
 
-with open("../../config.json", 'r') as j:
+with open("config.json", 'r') as j:
     cfg = json.load(j)
 
 symbol_file = cfg["symbol_file"]
@@ -44,9 +44,9 @@ def main():
     symbols = symbols[:symb_count]
     nominal_col_count = len(symbols)
 
-    # for symbol in symbols:
-    #     # print(f"symbol: {symbol}")
-    #     st.download_symbol_data_since(symbol, hist_start, save_path=hist_path)
+    for symbol in symbols:
+        # print(f"symbol: {symbol}")
+        st.download_symbol_data_since(symbol, hist_start, save_path=hist_path)
 
     st.apply_sroc_indicators(hist_path, ema, roc, symbols)
 
@@ -57,7 +57,7 @@ def main():
     loggable_fullr = st.format_sorted_rack(sorted_rack, today)
     # st.update_record(loggable_fullr, "periodic_data/rack_hist.csv", 20, nominal_col_count)
 
-    previous_df = st.read_saved("../../periodic_data/previous.csv", top_n)
+    previous_df = st.read_saved("periodic_data/previous.csv", top_n)
     # print(previous_df)
     prev_html = previous_df.to_html()
 
@@ -69,7 +69,7 @@ def main():
     top_filter = st.filter_vals_max(rack_series, 20, cutoff)
     loggable_topr = st.format_sorted_rack(top_filter, today)
     # print(loggable_topr)
-    st.update_record(loggable_topr, "../../periodic_data/previous.csv", 1, top_n)
+    st.update_record(loggable_topr, "periodic_data/previous.csv", 1, top_n)
     curr_html = loggable_topr.to_html()
 
     curr_df_mod = loggable_topr.droplevel(level=0)

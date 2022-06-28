@@ -13,6 +13,7 @@ class Strategy:
         self.cutoff = config["cutoff"]
         self.top_n = config["top_n"]
         self.client = client
+        self.start_date = self._get_start_date()
 
     def get_symbol_score(self, symbol: str) -> float:
         hist_data = self.download_data_since(symbol)
@@ -22,8 +23,7 @@ class Strategy:
         return score
 
     def download_data_since(self, symbol: str) -> pd.DataFrame:
-        recent_date = self._get_start_date()
-        resp = self.client.get_price_history_every_day(symbol, start_datetime=recent_date)
+        resp = self.client.get_price_history_every_day(symbol, start_datetime=self.start_date)
         if resp.status_code == 200:
             history = resp.json()
             hist = pd.json_normalize(history["candles"])
@@ -32,7 +32,7 @@ class Strategy:
             except ValueError as e:
                 print(f"Symbol {symbol} failed")
                 print(e)
-                return
+                return None
             hist["Date"] = pd.to_datetime(hist["Date"], unit='ms')
             hist.set_index("Date", inplace=True)
             hist.sort_values(by="Date", ascending=True, inplace=True)
