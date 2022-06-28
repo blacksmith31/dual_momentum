@@ -1,6 +1,6 @@
 {
-    "symbol_file": "top_2300_symbols.csv"
-    ,"data_folder": "history/"
+    "symbol_file": "../../top_2300_symbols.csv"
+    ,"data_folder": "../../history/"
     ,"state": {
         "count": 4
     }

@@ -39,6 +39,7 @@ class Strategy:
             return hist
         else:
             print(f"Bad response: {resp.status_code} - for symbol {symbol}")
+            return None
 
     def apply_indicators(self, symbol: str, hist_data: pd.DataFrame) -> pd.DataFrame:
         try:
@@ -56,7 +57,7 @@ class Strategy:
         except:
             print(f"SROC fail on symbol: {symbol}")
             raise
-        
+        return symb_hist
 
     def _get_start_date(self):
         hist_days = (self.ema + self.roc) * 2

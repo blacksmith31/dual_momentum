@@ -18,7 +18,7 @@ load_dotenv()
 # TDA client params
 API_KEY = os.environ.get("tda_api_key")
 REDIRECT_URI = "https://localhost"
-TOKEN_PATH = "token.json"
+TOKEN_PATH = "../../token.json"
 
 """
 Reference for Period types and periods

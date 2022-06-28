@@ -14,6 +14,7 @@ ignore.gitlab-ci.yml
 gmail_quickstart.py
 stock_data_pipeline.ipynb
 test_table.html
+src/utils/geckodriver.log
 
 .vscode/*
 !.vscode/settings.json
