@@ -1,10 +1,9 @@
-from ast import Str
 from dataclasses import dataclass, field
 
 @dataclass
 class Symbol():
-    name: Str
+    name: str
     score: float
-    position: int = field(init=False)
+    position: int = field(init=False, repr=False)
 
     

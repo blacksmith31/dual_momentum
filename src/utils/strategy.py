@@ -8,23 +8,25 @@ import btalib
 class Strategy:
 
     def __init__(self, config: dict, client: Client) -> None:
-        self.period_type = config["strategy"]["period_type"]
-        self.period = config["strategy"]["period"]
-        self.ema = config["strategy"]["ema"]
-        self.roc = config["strategy"]["roc"]
-        self.cutoff = config["strategy"]["cutoff"]
-        self.top_n = config["strategy"]["top_n"]
+        self.period_type = config["period_type"]
+        self.period = config["period"]
+        self.ema = config["ema"]
+        self.roc = config["roc"]
+        self.cutoff = config["cutoff"]
+        self.top_n = config["top_n"]
         self.client = client
         self.start_date = self._get_start_date()
 
     def get_symbol_score(self, symbol: str) -> float:
         hist_data = self.download_data_since(symbol)
-        if not hist_data.empty:
+        
+        if hist_data.empty or hist_data is  None:
+            score = 0
+        else:
             indicated_data = self.apply_indicators(symbol, hist_data)
             last_row = indicated_data.tail(1)
             score = round(float(last_row["roc"]), 1)
-        else:
-            score = 0
+            
         return score
 
     def download_data_since(self, symbol: str) -> pd.DataFrame:
@@ -41,11 +43,11 @@ class Strategy:
                 print(f"Symbol {symbol} failed")
                 print(e)
                 # return None
-            
-            return hist
         else:
             print(f"Bad response: {resp.status_code} - for symbol {symbol}")
-            return None
+            hist = pd.DataFrame()
+            # return hist
+        return hist
 
     def apply_indicators(self, symbol: str, hist_data: pd.DataFrame) -> pd.DataFrame:
         try:
